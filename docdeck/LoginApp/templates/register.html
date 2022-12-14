@@ -1,0 +1,101 @@
+<!-- extend -->
+{% extends 'LoginApp/pages-register.html' %}
+<!-- Load -->
+{% load widget_tweaks %}
+{% load static %}
+
+
+{% block extra_imports %}
+        
+    <script src="https://unpkg.com/htmx.org@1.8.2" integrity="sha384-+8ISc/waZcRdXCLxVgbsLzay31nCdyZXQxnsUy++HJzJliTzxKWr0m1cIEMyUzQu" crossorigin="anonymous"></script>
+    
+{% endblock extra_imports %}
+
+{% block register_block %}
+
+<main>
+    <div class="container">
+      
+      <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+                
+                <div class="d-flex justify-content-center py-4">
+                  <a href="{% url 'home' %}" class="logo d-flex align-items-center w-auto">
+                    <img src="\media\Docdecklogo.png" alt="">
+                    <span class="d-none d-lg-block"></span>
+                  </a>
+                </div><!-- End Logo -->
+                
+                <div class="card mb-3">
+  
+                  <div class="card-body">
+                    
+                    <div class="pt-4 pb-2">
+                      <h5 class="card-title text-center pb-0 fs-4">¡Regístrate!</h5>
+                      <p class="text-center small">Llena los campos para crear tu cuenta</p>
+                    </div>
+                    
+                    <form class="row g-3 needs-validation" action="{% url 'register'%}" method="POST">{% csrf_token %}
+                                            
+                      <div class="col-12">
+                        <label class="form-label">{{ form.username.label_tag }}</label>
+                        <div class="input-group has-validation">
+                            {{ form.username.errors }}
+                            {% render_field form.username hx-post="/home/check_username/" hx-target="#username-err" hx-swap="outerhtml" hx-trigger="keyup delay:500ms" class="form-control" %}                        
+
+                        </div>
+                        <div class="text-danger mt-4" id="username-err"></div>
+                      </div>
+
+                      <div class="col-12">
+                        <label for="yourPassword" class="form-label">{{ form.email.label_tag }}</label>
+                        {{ form.email.errors }}
+                        {% render_field form.email class="form-control" %}
+                      </div>
+  
+                      <div class="col-12">
+                        <label for="yourPassword" class="form-label">{{ form.password1.label_tag }}</label>
+                        {{ form.password1.errors }}
+                        {% render_field form.password1 class="form-control" %}
+                      </div>
+                      
+                      <div class="col-12">
+                        <label for="yourPassword" class="form-label">{{ form.password2.label_tag }}</label>
+                        {{ form.password2.errors }}
+                        {% render_field form.password2 class="form-control" %}
+                      </div>
+
+                      <div class="col-12">
+                        <div class="form-check">
+                          <input class="form-check-input" name="terms" type="checkbox" value="" id="acceptTerms" required>
+                          <label class="form-check-label" for="acceptTerms">He leido, estoy de acuerdo y acepto los <a href="#">terminos y condiciones.</a></label>
+                          <div class="invalid-feedback">Debes aceptar los terminos y condiciones para poder registrarte.</div>
+                        </div>
+                      </div>
+                      <div class="col-12">
+                        <button class="btn btn-primary w-100" type="submit">Crear cuenta</button>
+                      </div>
+                      <div class="col-12">
+                        <p class="small mb-0">Ya tienes una cuenta? <a href="{% url 'login' %}">¡Inicia sesión!</a></p>
+                      </div>
+                    </form>
+                    
+                  </div>
+                </div>
+                
+                <!-- <div class="credits">
+                  Designed by <a href="https://docdeck.co/">DocDeck</a>
+                </div> -->
+  
+              </div>
+            </div>
+          </div>
+          
+        </section>
+        
+      </div>
+    </main><!-- End #main -->
+
+    {% endblock register_block %}

@@ -1,0 +1,50 @@
+{% extends 'dashboard-master.html' %}
+
+{% load static %}
+
+{% block changing-part %}
+<script src="https://unpkg.com/htmx.org@1.8.2" integrity="sha384-+8ISc/waZcRdXCLxVgbsLzay31nCdyZXQxnsUy++HJzJliTzxKWr0m1cIEMyUzQu" crossorigin="anonymous"></script>
+
+<main id="main" class="main">
+    
+    <div class="pagetitle">
+      <h1>Pacientes</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+          <li class="breadcrumb-item active"><a href="{% url 'index' %}">Dashboard</a></li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+<section class="section"></section>
+<div class="card">
+    <div class="card-body">
+    <h5 class="card-title">Pacientes:</h5>
+    <h6 class="card-subtitle mb-2 text-muted">Seleccione el nombre del paciente para ver su información.</h6>
+    <h6 class="card-subtitle mb-2 text-muted">ADVERTENCIA: Si presiona el botón rojo se eliminará el paciente y su información ¡Esta acción no se puede deshacer!.</h6>
+    <p></p>
+    <div id="patient-list">
+      <ul class="list-group col-4" >
+        {% for patient in patients %}{% csrf_token %}
+           <li class="list-group-item d-flex justify-content-between align-items-center">
+            <a href="{% url 'patient-detail' patient.id%}"> {{patient}} </a> 
+            
+            <i class="btn btn-danger btn-sm bi bi-trash" 
+            hx-delete="{% url 'delete-patient' patient.pk %}"
+            hx-target="#body"
+            hx-confirm="Esta seguro"
+            title="DeletePatient"></i>
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <p></p>
+    <p></p>
+    <p class="card-text"><a href="{% url 'add-patient' user.id %}" class="btn btn-primary">Crear un nuevo paciente</a></p>
+    </div>
+</div><!-- End Card with titles, buttons, and links -->
+</section>
+
+{% endblock %}  
