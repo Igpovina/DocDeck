@@ -1,20 +1,20 @@
 # Docdeck
 
-Video descriptivo: https://www.youtube.com/watch?v=KwGzF3utark
+Video (Spanish): https://www.youtube.com/watch?v=KwGzF3utark
 
-Proyecto Co-creado por:
+Project Co-creators:
 
   Ignacio gomez povina:
-  Ingeniero QA, radicado en Nueva York, Estados Unidos. Dedicado al desarrollo de aplicaciones web y Co-creador de Docdeck.
+  QA Engineer, Based in New York, United States. In charge of web and back-end development and Docdeck Co-creator.
   
   Ignacio Prada:
-  Contador y especialista en finanzas, Radicado en Buenos Aires, Argentina. Co-creador de Docdeck y dedicado al desarrollo de aplicaciones web.
+  Accountant and finance specialist , Based in Buenos Aires, Argentina. Docdeck Co-creator and in charge of web app development.
   
   Hugo Parra:
-  Diseñador Industrial de profesión, radicado en Barranquilla, Colombia. Co-creador de Docdeck y dedicado al desarrollo de aplicaciones web.
+  Professional Industrial Designer, Based in Barranquilla, Colombia. Docdeck Co-creator and in charge of web app development.
 
 
-Las dependecias del proyecto estan indicadas en el Pipfile!
+Pipfile contains the projects dependencies!
 
   [packages]
   django = "4.1.3"
@@ -22,3 +22,4 @@ Las dependecias del proyecto estan indicadas en el Pipfile!
   django-phone-field = "*"
   django-extensions = "*"
   django-htmx = "*"
+  pillow = "*"
